@@ -1,7 +1,5 @@
-# Read Me First
-The following was discovered as part of building this project:
-
-* The original package name 'io.github.simplydemo.webflux-data-collector-s3' is invalid and this project uses 'io.github.simplydemo.webfluxdatacollectors3' instead.
+# spring-reactive-collector-s3
+This is a demo application that collects data and ingests it to S3 bucket using the spring-webflux functional ways and the logback library.
 
 ## Build
 ```
@@ -10,7 +8,7 @@ mvn clean package -DskipTests=true
 
 ## Run
 ```
-java -jar -noverify target/spring-reactive-collector-s3-1.0.0-SNAPSHOT.jar
+java -jar target/spring-reactive-collector-s3-1.0.0-SNAPSHOT.jar
 ```
 
 ### Reference Documentation

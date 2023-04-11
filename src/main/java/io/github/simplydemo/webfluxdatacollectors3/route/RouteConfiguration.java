@@ -28,7 +28,6 @@ public class RouteConfiguration {
 
     @Bean
     RouterFunction<ServerResponse> collectRoute() {
-        System.out.println("collectRoute()");
         return RouterFunctions.route().POST("/api/collect", this::handlePost).build();
     }
 
