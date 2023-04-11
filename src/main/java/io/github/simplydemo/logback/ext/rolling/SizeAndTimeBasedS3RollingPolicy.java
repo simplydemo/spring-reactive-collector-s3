@@ -1,4 +1,4 @@
-package unit.github.simplydemo.logback.ext.rolling;
+package io.github.simplydemo.logback.ext.rolling;
 
 import ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy;
 import ch.qos.logback.core.rolling.helper.DateTokenConverter;

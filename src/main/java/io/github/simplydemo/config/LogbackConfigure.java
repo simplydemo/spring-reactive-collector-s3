@@ -8,7 +8,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.rolling.RollingFileAppender;
 import ch.qos.logback.core.spi.ContextAwareBase;
 import ch.qos.logback.core.util.FileSize;
-import unit.github.simplydemo.logback.ext.rolling.SizeAndTimeBasedS3RollingPolicy;
+import io.github.simplydemo.logback.ext.rolling.SizeAndTimeBasedS3RollingPolicy;
 import io.github.thenovaworks.logback.encoder.MessageOnlyEncoder;
 import org.slf4j.LoggerFactory;
 
