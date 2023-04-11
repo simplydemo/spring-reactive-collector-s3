@@ -1,4 +1,4 @@
-package io.github.simplydemo.webfluxdatacollectors3.route;
+package io.github.simplydemo.route;
 
 import java.time.LocalDate;
 

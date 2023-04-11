@@ -1,4 +1,4 @@
-package io.github.simplydemo.logback.ext.rolling;
+package unit.github.simplydemo.logback.ext.rolling;
 
 import org.springframework.util.StringUtils;
 import software.amazon.awssdk.auth.credentials.*;

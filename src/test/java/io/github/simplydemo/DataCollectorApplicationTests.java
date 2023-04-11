@@ -1,4 +1,4 @@
-package io.github.simplydemo.webfluxdatacollectors3;
+package io.github.simplydemo;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

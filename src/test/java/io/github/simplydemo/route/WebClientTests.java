@@ -1,4 +1,4 @@
-package io.github.simplydemo.webfluxdatacollectors3.route;
+package io.github.simplydemo.route;
 
 import ch.qos.logback.core.ContextBase;
 import ch.qos.logback.core.rolling.helper.FileNamePattern;
