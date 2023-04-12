@@ -51,7 +51,7 @@ public class SizeAndTimeBasedS3RollingPolicy extends SizeAndTimeBasedRollingPoli
         try {
             this.fileNamePattern = new FileNamePattern("%d{yyyyMMdd}", context);
             this.s3 = s3builder.build(region, profile);
-            this.buckets = s3.listBuckets().buckets();
+            // this.buckets = s3.listBuckets().buckets();
             super.start();
         } catch (SdkException se) {
             System.err.println("Can not create S3Client instance.");
@@ -97,9 +97,11 @@ public class SizeAndTimeBasedS3RollingPolicy extends SizeAndTimeBasedRollingPoli
     @Override
     public void rollover() {
         super.rollover();
-        for (final Bucket buk : buckets) {
-            if (buk.name().equals(bucket)) {
-                bucketExists = true;
+        if (this.buckets != null) {
+            for (final Bucket buk : buckets) {
+                if (buk.name().equals(bucket)) {
+                    bucketExists = true;
+                }
             }
         }
         // System.out.println("bucketExists: " + bucketExists);

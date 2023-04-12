@@ -1,8 +1,8 @@
 package io.github.simplydemo.logback.ext.rolling;
 
 import org.springframework.util.StringUtils;
-import software.amazon.awssdk.auth.credentials.*;
-import software.amazon.awssdk.auth.credentials.internal.LazyAwsCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
 import software.amazon.awssdk.awscore.client.builder.AwsClientBuilder;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -35,18 +35,9 @@ public class S3Builder {
         if (StringUtils.hasText(profile)) {
             builder.credentialsProvider(ProfileCredentialsProvider.create());
         } else {
-            builder.credentialsProvider(credentialsProvider(false, true));
+            builder.credentialsProvider(DefaultCredentialsProvider.create());
         }
-        final S3Client s3 = builder.build();
-        return s3;
-    }
-
-    private AwsCredentialsProvider credentialsProvider(boolean asyncCredentialUpdateEnabled, boolean reuseLastProviderEnabled) {
-        return LazyAwsCredentialsProvider.create(() -> {
-            final AwsCredentialsProvider[] credentialsProviders = new AwsCredentialsProvider[]{EnvironmentVariableCredentialsProvider.create(), WebIdentityTokenFileCredentialsProvider.create(), ((ContainerCredentialsProvider.Builder) ContainerCredentialsProvider.builder().asyncCredentialUpdateEnabled(asyncCredentialUpdateEnabled)).build(), ((InstanceProfileCredentialsProvider.Builder) InstanceProfileCredentialsProvider.builder().asyncCredentialUpdateEnabled(asyncCredentialUpdateEnabled)).build()};
-            return AwsCredentialsProviderChain.builder().reuseLastProviderEnabled(reuseLastProviderEnabled).credentialsProviders(credentialsProviders).build();
-        });
-
+        return builder.build();
     }
 
 }
