@@ -22,7 +22,8 @@ import static org.springframework.web.reactive.function.server.ServerResponse.st
 @Configuration
 public class RouteConfiguration {
 
-    private final Logger logger = LoggerFactory.getLogger("DataCollector.default.ingest");
+    private final Logger logger = LoggerFactory.getLogger(RouteConfiguration.class);
+    private final Logger collector = LoggerFactory.getLogger("DataCollector.default.ingest");
 
     private final ObjectMapper mapper = new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, false);
 
@@ -37,7 +38,8 @@ public class RouteConfiguration {
             try {
                 final JsonNode jsonNode = mapper.readTree(json);
                 var row = mapper.writeValueAsString(jsonNode);
-                logger.info(row);
+                collector.info(row);
+                logger.debug(row);
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
