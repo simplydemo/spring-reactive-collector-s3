@@ -13,7 +13,6 @@ import java.io.File;
 import java.time.Instant;
 import java.util.List;
 
-
 public class SizeAndTimeBasedS3RollingPolicy extends SizeAndTimeBasedRollingPolicy {
 
     private boolean bucketExists = false;
@@ -46,6 +45,9 @@ public class SizeAndTimeBasedS3RollingPolicy extends SizeAndTimeBasedRollingPoli
     }
 
     public void start() {
+        System.out.println("AWS REGION: " + region);
+        System.out.println("AWS BUCKET: " + bucket);
+        System.out.println("AWS PROFILE: " + profile);
         try {
             this.fileNamePattern = new FileNamePattern("%d{yyyyMMdd}", context);
             this.s3 = s3builder.build(region, profile);
@@ -117,8 +119,8 @@ public class SizeAndTimeBasedS3RollingPolicy extends SizeAndTimeBasedRollingPoli
                 final String keyName = new StringBuilder().append("collector/")
                         .append(dtc.convert(now))
                         .append("/")
-                        .append(s3builder.generateS3KeyPrefix())
-                        .append("-")
+                        // .append(s3builder.generateS3KeyPrefix())
+                        // .append("-")
                         .append(file.getName())
                         .toString();
                 // System.out.println("keyName: " + keyName);

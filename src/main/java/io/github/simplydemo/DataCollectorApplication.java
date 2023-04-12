@@ -1,10 +1,8 @@
 package io.github.simplydemo;
 
-import io.github.simplydemo.config.LogbackConfigure;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
-
 
 @SpringBootApplication(exclude = {JacksonAutoConfiguration.class,
         // JvmMetricsAutoConfiguration.class, LogbackMetricsAutoConfiguration.class, MetricsAutoConfiguration.class

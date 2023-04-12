@@ -29,9 +29,9 @@ public class S3Builder {
         return build(region, null);
     }
 
-    public S3Client build(final String region, final String profile) {
-        final Region r = Region.of(region); // Region.US_EAST_1;
-        final AwsClientBuilder<S3ClientBuilder, S3Client> builder = S3Client.builder().region(r);
+    public S3Client build(final String regionName, final String profile) {
+        final Region region = Region.of(regionName);
+        final AwsClientBuilder<S3ClientBuilder, S3Client> builder = S3Client.builder().region(region);
         if (StringUtils.hasText(profile)) {
             builder.credentialsProvider(ProfileCredentialsProvider.create());
         } else {
