@@ -5,6 +5,8 @@ import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
 import software.amazon.awssdk.awscore.client.builder.AwsClientBuilder;
 import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3AsyncClient;
+import software.amazon.awssdk.services.s3.S3AsyncClientBuilder;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.S3ClientBuilder;
 
@@ -32,6 +34,21 @@ public class S3Builder {
     public S3Client build(final String regionName, final String profile) {
         final Region region = Region.of(regionName);
         final AwsClientBuilder<S3ClientBuilder, S3Client> builder = S3Client.builder().region(region);
+        if (StringUtils.hasText(profile)) {
+            builder.credentialsProvider(ProfileCredentialsProvider.create());
+        } else {
+            builder.credentialsProvider(DefaultCredentialsProvider.create());
+        }
+        return builder.build();
+    }
+
+    public S3AsyncClient buildAsync(final String regionName, final String profile, final boolean acceleratedUpload) {
+        final AwsClientBuilder<S3AsyncClientBuilder, S3AsyncClient> builder = S3AsyncClient.builder()
+                .region(Region.of(regionName))
+                .accelerate(acceleratedUpload)
+                // .httpClientBuilder(NettyNioAsyncHttpClient.builder().maxConcurrency(500))
+                // .asyncConfiguration(ClientAsyncConfiguration.builder().build())
+                ;
         if (StringUtils.hasText(profile)) {
             builder.credentialsProvider(ProfileCredentialsProvider.create());
         } else {
